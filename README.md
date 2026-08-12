@@ -22,3 +22,12 @@ draw_tanglegram('gopher_louse')
 ```
 
 Available datasets: `gopher_louse`, `ficus_ceratosolen`, `seabird_louse`, `finches_african_brood_parasites`.
+
+## Reconciliation algorithm
+`reconciliation.ipynb` implements the DTL reconciliation with dynamic programming. For a parasite node `p` placed on host node `h`, it fills `cost[p][h]` bottom-up (leaves → root) and returns the cheapest total cost. It uses two tables: `cost` (`p` exactly at `h`) and `best_below` (`p` at `h` or below it, paying one **loss** per step down). A **host-switch** may target any host that is neither an ancestor nor a descendant of the current one.
+
+```python
+reconcile(host_tree, parasite_tree, mapping, C)   # -> minimum reconciliation cost
+```
+
+The notebook also **sweeps the host-switch penalty** (the optimal number of switches drops as it gets more expensive), **compares all datasets** using cost per parasite (a size-independent measure — finches/brood-parasites are the least faithful, ficus and gopher the most), and uses **traceback** to recover the individual events and colour each ancestor of the parasite tree by its event.
