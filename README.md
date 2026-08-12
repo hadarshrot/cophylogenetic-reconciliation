@@ -13,3 +13,12 @@ The project analyzes how varying the penalty weight for **Host-Switching ($C_t$)
 
 ## Data
 Data is taken from [here](https://www.cs.hmc.edu/~hadas/jane/SampleTrees.html)
+
+## Visualization
+`visualization.ipynb` draws a **tanglegram** for any dataset — the host tree and the parasite tree side by side, with a line connecting each parasite to the host it lives on. Crossing lines suggest host-switching (incongruence); near-parallel lines suggest cospeciation.
+
+```python
+draw_tanglegram('gopher_louse')
+```
+
+Available datasets: `gopher_louse`, `ficus_ceratosolen`, `seabird_louse`, `finches_african_brood_parasites`.
